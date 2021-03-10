@@ -19,5 +19,6 @@ public class Shop extends AppCompatActivity {
         String mobilea=intent.getExtras().getString("mobilei");
 
 
+
     }
 }
