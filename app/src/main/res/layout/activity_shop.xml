@@ -9,23 +9,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:text="Button"
+        android:visibility="gone" />
     <ScrollView
         android:id="@+id/items"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/scrollview_background" />
+        android:background="@drawable/scrollview_background" >
 
-    <ImageView
-        android:id="@+id/coverphoto"
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/coverphotobutton"
         android:layout_width="match_parent"
         android:layout_height="206dp"
         tools:layout_editor_absoluteX="-30dp"
         tools:layout_editor_absoluteY="62dp"
-        tools:srcCompat="@drawable/coverphoto" />
+        android:background="@drawable/coverphoto"/>
 
 
-    <ImageView
-        android:id="@+id/shoplogo"
+    <ImageButton
+        android:id="@+id/shoplogobutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -33,12 +42,12 @@
         android:layout_weight="1"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="@color/black"
-        android:src="@drawable/edittext2"
+        android:src="@drawable/logo"
 
-        tools:srcCompat="@drawable/logo" />
+        android:background="@drawable/logo" />
 
     <TextView
-
+        android:id="@+id/shopname"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="190dp"

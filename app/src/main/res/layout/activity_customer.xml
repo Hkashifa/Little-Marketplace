@@ -98,7 +98,9 @@
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textSize="24sp"
-        app:backgroundTint="#F4B1BA" />
+        app:backgroundTint="#F4B1BA"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"/>
     <Button
         android:id="@+id/cback"
         android:layout_width="wrap_content"
