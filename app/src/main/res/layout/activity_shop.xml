@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Shop">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/coverphoto"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        tools:layout_editor_absoluteX="-30dp"
+        tools:layout_editor_absoluteY="62dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <ScrollView
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/shoplogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="30dp"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/avatars"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="280dp"
+        android:text="Shop Name"
+        android:textSize="30dp" />
+
+
+</FrameLayout>
+
+</RelativeLayout>

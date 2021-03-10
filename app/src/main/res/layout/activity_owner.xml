@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Owner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background" >
+
+        <Button
+        android:id="@+id/gotoshop"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="560dp"
+        android:background="@drawable/edittext2"
+        android:elevation="20dp"
+        android:shadowColor="#A40E0101"
+        android:text="Go To Shop"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:backgroundTint="#F4B1BA" />
+
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/fullname"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="FullName"
+        android:textSize="24dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/susername"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="Username"
+        android:textSize="24dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="Email"
+        android:textSize="24dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/mobile"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="Mobile"
+        android:textSize="24dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="380dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="Password"
+        android:textSize="24dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/conpassword"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:padding="5dip"
+        android:layout_marginTop="460dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/edittext2"
+        android:hint="Confirm Password"
+        android:textSize="20dp"
+        android:paddingLeft="100dp"
+        android:textAlignment="center"/>
+    <Button
+        android:id="@+id/oback"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/edittext2"
+        android:elevation="20dp"
+        android:shadowColor="#A40E0101"
+        android:text="< Back"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:backgroundTint="#F4B1BA" />
+
+
+</RelativeLayout>
