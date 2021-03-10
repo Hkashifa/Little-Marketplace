@@ -14,6 +14,10 @@ public class Shop extends AppCompatActivity {
         Intent intent = getIntent();
         String emaila=intent.getExtras().getString("emaili");
         String passworda=intent.getExtras().getString("passwordi");
-        String
+        String fullnamea=intent.getExtras().getString("fullnamei");
+        String usernamea=intent.getExtras().getString("usernamei");
+        String mobilea=intent.getExtras().getString("mobilei");
+
+
     }
 }

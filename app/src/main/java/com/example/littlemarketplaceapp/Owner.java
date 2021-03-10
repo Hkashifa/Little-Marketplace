@@ -76,7 +76,7 @@ public class Owner extends AppCompatActivity {
 */
         //send data to shop activity
 
-        Intent intent = Intent(this, Shop.class);
+        Intent intent = new Intent(this, Shop.class);
         intent.putExtra("emaili",email);
         intent.putExtra("passwordi",password);
         intent.putExtra("fullnamei",fullname);
