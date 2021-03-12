@@ -62,7 +62,7 @@
         android:layout_marginLeft="190dp"
         android:layout_marginTop="210dp"
         android:text="Shop Name"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
     <EditText
         android:id="@+id/shopnameedittext"
         android:layout_width="wrap_content"
@@ -75,6 +75,19 @@
         />
 
 
-</FrameLayout>
 
+
+</FrameLayout>
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="720dp"
+        android:text="@string/save"
+        android:textSize="30sp"
+        android:textsize="35sp"
+        android:visibility="visible"
+        app:backgroundTint="#F4B1BA"
+        tools:visibility="visible" />
 </RelativeLayout>
