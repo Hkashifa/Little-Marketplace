@@ -33,22 +33,27 @@ public class Shop extends AppCompatActivity {
         String passworda=intent.getExtras().getString("passwordi");
         String fullnamea=intent.getExtras().getString("fullnamei");
         String usernamea=intent.getExtras().getString("usernamei");
-        String mobilea=intent.getExtras().getString("mobilei");
+        String mobilea = intent.getExtras().getString("mobilei");
         String Shopname;
-        Logoimage=findViewById(R.id.shoplogobutton);
-        Cover=findViewById(R.id.coverphotobutton);
-        ShowShopName=findViewById(R.id.shopname);
-        ShopnameEditText=findViewById(R.id.shopnameedittext);
+        Logoimage = findViewById(R.id.shoplogobutton);
+        Cover = findViewById(R.id.coverphotobutton);
+        ShowShopName = findViewById(R.id.shopname);
+        ShopnameEditText = findViewById(R.id.shopnameedittext);
 
-        Shopname=ShopnameEditText.getText().toString().trim();
-        String key=databaseReference1.push().getKey();
+        Shopname = ShopnameEditText.getText().toString().trim();
+        String key = databaseReference1.push().getKey();
 
+        //Uploads the images
+
+
+        //Saves Owner's Data
         SaveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                ForOwner s_owner = new ForOwner(fullnamea,usernamea,emaila,mobilea,passworda,Shopname);
+            public void onClick(View v) {
+                ForOwner s_owner = new ForOwner(fullnamea, usernamea, emaila, mobilea, passworda, Shopname);
                 databaseReference1.child(key).setValue(s_owner);
-                Toast.makeText(getApplicationContext(),"Registration complete",Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Registration complete", Toast.LENGTH_SHORT);
+
+
             }
         });
 
