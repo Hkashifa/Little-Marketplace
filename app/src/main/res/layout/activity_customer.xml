@@ -110,7 +110,7 @@
         android:background="@drawable/edittext2"
         android:elevation="20dp"
         android:shadowColor="#A40E0101"
-        android:text="< Back"
+        android:text="Back"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:backgroundTint="#F4B1BA" />
