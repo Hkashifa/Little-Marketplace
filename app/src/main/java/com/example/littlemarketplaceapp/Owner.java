@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 
+import static com.example.littlemarketplaceapp.R.*;
+import static com.example.littlemarketplaceapp.R.id.gotoshop;
+
 public class Owner extends AppCompatActivity implements View.OnClickListener {
 
     private EditText signEmailEditText, signInPasswordEditText;
@@ -32,17 +35,17 @@ public class Owner extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner);
-        signEmailEditText=findViewById(R.id.email);
-        signInPasswordEditText=findViewById(R.id.conpassword);
+        setContentView(layout.activity_owner);
+        signEmailEditText = findViewById(id.email);
+        signInPasswordEditText = findViewById(id.conpassword);
 
-        Fullname=findViewById(R.id.fullname);
-        Username=findViewById(R.id.susername);
-        Mobile= findViewById(R.id.mobile);
+        Fullname = findViewById(id.fullname);
+        Username = findViewById(id.susername);
+        Mobile = findViewById(id.mobile);
 
 
-        SignUpButton=findViewById(R.id.gotoshop);
-        Back=findViewById(R.id.oback);
+        SignUpButton = findViewById(gotoshop);
+        Back = findViewById(id.oback);
 
         Back.setOnClickListener(this);
         SignUpButton.setOnClickListener(this);
@@ -51,12 +54,12 @@ public class Owner extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v)
-    { switch(v.getId())
-    {
-        case R.id.gotoshop:
+    { switch(v.getId()) {
+        if (gotoshop == v.getId()) {
             UserRegister();
-        case R.id.oback:
-            Intent intent = new Intent(getApplication(),MainActivity.class);
+        }
+        case id.oback:
+            Intent intent = new Intent(getApplication(), MainActivity.class);
             startActivity(intent);
             break;
     }
@@ -101,32 +104,23 @@ public class Owner extends AppCompatActivity implements View.OnClickListener {
         }
 
         //checking the validity of the password
-        if(password.isEmpty())
-        {
+        if (password.isEmpty()) {
             signInPasswordEditText.setError("Enter a password");
             signInPasswordEditText.requestFocus();
             return;
         }
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(getApplicationContext(),"Registration is Successful",Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(getApplicationContext(), "Registration is Successful", Toast.LENGTH_SHORT).show();
+            } else {
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(getApplicationContext(), "User is already Registered", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
-                    if(task.getException() instanceof FirebaseAuthUserCollisionException)
-                    {
-                        Toast.makeText(getApplicationContext(),"User is already Registered",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Error : "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-
             }
+
+
         });
 
     }

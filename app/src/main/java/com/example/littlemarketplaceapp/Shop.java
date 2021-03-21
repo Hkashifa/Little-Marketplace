@@ -61,32 +61,24 @@ public class Shop extends AppCompatActivity {
         String key = databaseReference1.push().getKey();
 
         //Saves Owner's Data
-        SaveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ForOwner s_owner = new ForOwner(fullnamea, usernamea, emaila, mobilea, passworda, Shopname);
-                databaseReference1.child(key).setValue(s_owner);
-                Toast.makeText(getApplicationContext(), "Registration complete", Toast.LENGTH_SHORT);
+        SaveButton.setOnClickListener(v -> {
+            ForOwner s_owner = new ForOwner(fullnamea, usernamea, emaila, mobilea, passworda, Shopname);
+            databaseReference1.child(key).setValue(s_owner);
+            Toast.makeText(getApplicationContext(), "Registration complete", Toast.LENGTH_SHORT).show();
 
 
-            }
         });
         //Uploads the Logo
-        Logoimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open Gallery
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGalleryIntent, 1000);
-            }
+        Logoimage.setOnClickListener(view -> {
+            //open Gallery
+            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(openGalleryIntent, 1000);
         });
         //Uploads the Cover photo
-        Cover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open Gallery
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGalleryIntent, 2000);
-            }
+        Cover.setOnClickListener(view -> {
+            //open Gallery
+            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(openGalleryIntent, 2000);
         });
 
 
@@ -112,39 +104,26 @@ public class Shop extends AppCompatActivity {
 
     private void uploadImageToFirebase(Uri imageUri1, int coverOrLogo) {
         //upload image to firebase
-        StorageReference fileRef;
+        StorageReference fileRef = null;
         if (coverOrLogo == 1) {
             fileRef = storageReference.child("logo.jpg");
-        }
-        if (coverOrLogo == 0) {
+        } else if (coverOrLogo == 0) {
             fileRef = storageReference.child("cover.jpg");
         }
 
-        fileRef.putFile(imageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileRef.putFile(imageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-
-                    public void onSuccess(Uri uri) {
-                        if (coverOrLogo == 1) {
-                            Picasso.get().load(uri).into(Logo);
-                        }
-                        if (coverOrLogo == 0) {
-                            Picasso.get().load(uri).into(Cover);
-                        }
-                    }
-
-                });
-                Toast.makeText(Shop.this, "ImageUploaded", Toast.LENGTH_SHORT);
+        StorageReference finalFileRef = fileRef;
+        fileRef.putFile(imageUri1).addOnSuccessListener(taskSnapshot -> {
+            finalFileRef.putFile(imageUri1).addOnSuccessListener(uri -> {
+                if (coverOrLogo == 1) {
+                    Picasso.get().load(uri).into(Logo);
+                }
+                if (coverOrLogo == 0) {
+                    Picasso.get().load(uri).into(Cover);
+                }
+            });
+            Toast.makeText(Shop.this, "ImageUploaded", Toast.LENGTH_SHORT).show();
 
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Shop.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).addOnFailureListener(e -> Toast.makeText(Shop.this, "Failed to upload image", Toast.LENGTH_SHORT).show());
     }
 }
