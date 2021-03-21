@@ -3,6 +3,7 @@ package com.example.littlemarketplaceapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class Shop extends AppCompatActivity {
     Uri Logo;
     Uri coverUri;
     private Uri uri;
-    boolean coverOrLogo;
+    int coverOrLogo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,18 +79,6 @@ public class Shop extends AppCompatActivity {
                 startActivityForResult(openGalleryIntent, 1000);
             }
         });
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode,
-        @androidx.annotation.Nullable Intent data)
-        {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == 1000) {
-                Uri imageUri1 = data.getData();
-                Logoimage.setImageURI(imageUri1);
-                uploadImageToFirebase(imageUri1, 1);
-            }
-        }
-
         //Uploads the Cover photo
         Cover.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,22 +88,29 @@ public class Shop extends AppCompatActivity {
                 startActivityForResult(openGalleryIntent, 2000);
             }
         });
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode,
-        @androidx.annotation.Nullable Intent data)
-        {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == 2000) {
-                Uri imageUri2 = data.getData();
-                Cover.setImageURI(imageUri2);
-                uploadImageToFirebase(imageUri2, 0);
-            }
-        }
 
 
     }
 
-    private void uploadImageToFirebase(Uri imageUri1, boolean coverOrLogo) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+
+            Uri imageUri1 = data.getData();
+            Logoimage.setImageURI(imageUri1);
+            uploadImageToFirebase(imageUri1, 1);
+        } else if (requestCode == 2000 && resultCode == Activity.RESULT_OK) {
+            Uri imageUri2 = data.getData();
+            Cover.setImageURI(imageUri2);
+            uploadImageToFirebase(imageUri2, 0);
+        }
+    }
+
+
+    //}
+
+    private void uploadImageToFirebase(Uri imageUri1, int coverOrLogo) {
         //upload image to firebase
         StorageReference fileRef;
         if (coverOrLogo == 1) {
@@ -129,18 +125,17 @@ public class Shop extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 fileRef.putFile(imageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        public void onSuccess (Uri uri)
-                        {
-                            if (coverOrLogo == 1) {
-                                Picasso.get().load(uri).into(Logo);
-                            }
-                            if (coverOrLogo == 0) {
-                                Picasso.get().load(uri).into(Cover);
-                            }
+
+                    public void onSuccess(Uri uri) {
+                        if (coverOrLogo == 1) {
+                            Picasso.get().load(uri).into(Logo);
+                        }
+                        if (coverOrLogo == 0) {
+                            Picasso.get().load(uri).into(Cover);
                         }
                     }
-                })
+
+                });
                 Toast.makeText(Shop.this, "ImageUploaded", Toast.LENGTH_SHORT);
 
 
@@ -150,6 +145,6 @@ public class Shop extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(Shop.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
             }
-        })
+        });
     }
 }

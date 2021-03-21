@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 
-public class Owner extends AppCompatActivity {
+public class Owner extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText signEmailEditText,signInPasswordEditText;
+    private EditText signEmailEditText, signInPasswordEditText;
     private EditText Fullname;
     private EditText Username;
     private EditText Mobile;
@@ -28,6 +28,7 @@ public class Owner extends AppCompatActivity {
     private Button Back;
     private FirebaseAuth mAuth;
     DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
