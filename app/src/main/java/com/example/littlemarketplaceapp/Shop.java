@@ -62,6 +62,7 @@ public class Shop extends AppCompatActivity {
 
         //Saves Owner's Data
         SaveButton.setOnClickListener(v -> {
+
             ForOwner s_owner = new ForOwner(fullnamea, usernamea, emaila, mobilea, passworda, Shopname);
             databaseReference1.child(key).setValue(s_owner);
             Toast.makeText(getApplicationContext(), "Registration complete", Toast.LENGTH_SHORT).show();
@@ -102,7 +103,7 @@ public class Shop extends AppCompatActivity {
 
     //}
 
-    private void uploadImageToFirebase(Uri imageUri1, int coverOrLogo) {
+    private <final_fileRef> void uploadImageToFirebase(Uri imageUri1, int coverOrLogo) {
         //upload image to firebase
         StorageReference fileRef = null;
         if (coverOrLogo == 1) {
@@ -110,20 +111,29 @@ public class Shop extends AppCompatActivity {
         } else if (coverOrLogo == 0) {
             fileRef = storageReference.child("cover.jpg");
         }
+        final StorageReference finalFileRef = fileRef;
+        fileRef.putFile(imageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
-        StorageReference finalFileRef = fileRef;
-        fileRef.putFile(imageUri1).addOnSuccessListener(taskSnapshot -> {
-            finalFileRef.putFile(imageUri1).addOnSuccessListener(uri -> {
-                if (coverOrLogo == 1) {
-                    Picasso.get().load(uri).into(Logo);
-                }
-                if (coverOrLogo == 0) {
-                    Picasso.get().load(uri).into(Cover);
-                }
-            });
-            Toast.makeText(Shop.this, "ImageUploaded", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                finalFileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        if (coverOrLogo == 1) {
+                            Picasso.get().load(uri).into(Logoimage);
+                        }
+                        if (coverOrLogo == 0) {
+                            Picasso.get().load(uri).into(Cover);
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
-
-        }).addOnFailureListener(e -> Toast.makeText(Shop.this, "Failed to upload image", Toast.LENGTH_SHORT).show());
+                Toast.makeText(Shop.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
