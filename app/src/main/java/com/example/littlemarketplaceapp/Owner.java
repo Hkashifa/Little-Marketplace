@@ -53,18 +53,16 @@ public class Owner extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v)
-    { switch(v.getId()) {
-        if (gotoshop == v.getId()) {
+    public void onClick(View v) {
+        if (v.getId() == R.id.gotoshop) {
             UserRegister();
-        }
-        case id.oback:
+        } else if (v.getId() == id.oback) {
             Intent intent = new Intent(getApplication(), MainActivity.class);
             startActivity(intent);
-            break;
+        }
     }
 
-    }
+    // }
 
     private void UserRegister() {
         String email=signEmailEditText.getText().toString().trim();

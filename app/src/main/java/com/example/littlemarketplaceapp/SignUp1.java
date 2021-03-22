@@ -19,29 +19,23 @@ public class SignUp1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up1);
-        Customer=findViewById(R.id.customer);
-        Owner=findViewById(R.id.owner);
+        Customer = findViewById(R.id.customer);
+        Owner = findViewById(R.id.owner);
 
-        Owner.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(this, Owner.class);
-                String message;
-                intent.putExtra("owner", message);
-                startActivity(intent);
-            }
-                                 }
+        Owner.setOnClickListener(v -> {
+                    Intent intent = new Intent(SignUp1.this, Owner.class);
+                    String message = null;
+                    intent.putExtra("owner", message);
+                    startActivity(intent);
+                }
 
         );
-        Customer.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(this,Customer.class);
-                String message1;
-                intent.putExtra("customer", message1);
-                startActivity(intent);
-            }
-        }
+        Customer.setOnClickListener(v -> {
+                    Intent intent = new Intent(SignUp1.this, Customer.class);
+                    String message1 = null;
+                    intent.putExtra("customer", message1);
+                    startActivity(intent);
+                }
 
         );
     }
